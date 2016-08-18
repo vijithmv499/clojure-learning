@@ -48,12 +48,34 @@
 	)	
 )
 
-(deftest test-navigate []
+(deftest test-take-move []
 
 	(testing "return the new location by updating the x co-ordinate when navigation string is 'M' and direction is E"
 
-		(is (= [4 5 "E"] (navigate [3 5 "E" "M"]))) 
+		(is (= [4 5 "E"] (take-move [3 5 "E" "M"]))) 
 
+	)
+)
+
+(deftest test-start-navigate []
+	
+	(testing "return the given co-ordinates and direction when the navigation array is empty"
+		(is (= [5 6 "S"] (start-navigate [5 6 "S"] [])))
+	)
+
+	(testing "return the final co-ordinates and direction when non-empty navigation array is given"
+		(is (= [6 8 "N"] (start-navigate [4 8 "E"] ["L","M","M"])) )
+	)
+)
+
+(deftest test-navigate []
+
+	(testing "return the final co-ordinates and direction when non-empty navigation string is given"
+		(is (= [26 12 "E"] (navigate [20 10 "E"] "LMMRMMMMLRRLMM")))	
+	)
+
+	(testing "returns false when an invalid navigation string is passed"
+		(is (= false (navigate [26 75 "W"] "LMMRGMMMMSRTLRRLMM")))	
 	)
 )
 
