@@ -37,7 +37,7 @@
 		[a b c]
 		(start-navigate (take-move [a b c (last d)]) (pop d))
 	)
-	; )
+	 ; )
 )
 
 (defn navigate [[a b c] d]
